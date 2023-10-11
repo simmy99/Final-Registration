@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ApiService } from './api.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,9 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   user: any = {
     email: '',
     password: '',
@@ -22,7 +26,7 @@ export class AppComponent {
 
   @ViewChild('registrationForm', { static: false }) form!: NgForm;
 
-  constructor(private modalRef: BsModalRef) { }
+  constructor(private modalRef: BsModalRef, private apiService: ApiService) { }
 
   ngAfterViewInit() {
   }
@@ -36,16 +40,64 @@ export class AppComponent {
 
     if (this.form.valid) {
       if (this.passwordsMatchValidator()) {
-        this.isRegistered = true;
-        this.registrationSuccessful = true;
-  
-        // Close the modal after 3 seconds (3000 milliseconds)
-        setTimeout(() => {
-          this.modalRef.hide();
-        }, 3000);
+        this.authenticateUser();
       } else {
         this.form.controls['confirmPassword'].setErrors({ 'passwordMismatch': true });
       }
+    } else {
+      console.error('Form validation error: Please check your inputs.');
     }
+  }
+
+  authenticateUser() {
+    this.apiService.authenticateUser(this.user.email, this.user.password).subscribe(
+      (authResponse) => {
+        if (authResponse.success) {
+          const authToken = authResponse.token;
+          this.checkDuplicateUser(authToken);
+        } else {
+          console.error('Authentication failed:', authResponse.message);
+        }
+      },
+      (error) => {
+        console.error('Authentication API error:', error);
+      }
+    );
+  }
+
+  checkDuplicateUser(token: string) {
+    this.apiService.checkDuplicateUser(this.user.email, this.user.phoneNumber, token).subscribe(
+      (duplicateResponse) => {
+        if (duplicateResponse.success) {
+          this.registerUserOnSuccess(token);
+        } else {
+          console.error('Duplicate check failed:', duplicateResponse.message);
+        }
+      },
+      (error) => {
+        console.error('Duplicate check API error:', error);
+      }
+    );
+  }
+
+  registerUserOnSuccess(token: string) {
+    this.apiService.registerUser(this.user, token).subscribe(
+      (registerResponse) => {
+        if (registerResponse.success) {
+          this.isRegistered = true;
+          this.registrationSuccessful = true;
+
+          // Close the modal after 3 seconds (3000 milliseconds)
+          setTimeout(() => {
+            this.modalRef.hide();
+          }, 3000);
+        } else {
+          console.error('Registration failed:', registerResponse.message);
+        }
+      },
+      (error) => {
+        console.error('Registration API error:', error);
+      }
+    );
   }
 }
