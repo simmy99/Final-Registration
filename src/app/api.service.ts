@@ -1,45 +1,42 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-
-  private baseUrl = 'https://your-api-base-url.com'; // Replace with your actual API base URL
+  private baseUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
   authenticateUser(username: string, password: string): Observable<any> {
-    // Define your authentication endpoint
-    const authEndpoint = `${this.baseUrl}/authenticate`;
-    const body = {
-      username: username,
-      password: password
+    // Mock the authentication response
+    const authResponse = {
+      success: true,
+      token: 'your_mock_token',
     };
-    return this.http.post(authEndpoint, body);
+    return of(authResponse);
   }
 
   checkDuplicateUser(email: string, phoneNumber: string, token: string): Observable<any> {
-    // Define your check duplicate user endpoint
-    const checkDuplicateEndpoint = `${this.baseUrl}/check-duplicate`;
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    const body = {
-      email: email,
-      phoneNumber: phoneNumber
+    // Mock the duplicate check response
+    const duplicateResponse = {
+      success: true,
     };
-    return this.http.post(checkDuplicateEndpoint, body, { headers: headers });
+    return of(duplicateResponse);
   }
 
   registerUser(user: any, token: string): Observable<any> {
     // Define your registration endpoint
     const registerEndpoint = `${this.baseUrl}/register`;
+    
+    // Create headers with the authorization token
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.post(registerEndpoint, user, { headers: headers });
+
+    // Send a POST request to the server
+    return this.http.post(registerEndpoint, user, { headers });
   }
 }

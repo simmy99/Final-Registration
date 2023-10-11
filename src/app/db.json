@@ -1,0 +1,30 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "simmy@gmail.com",
+      "password": "Simmy@1999",
+      "firstName": "Simmy",
+      "lastName": "Sebastian",
+      "phoneNumber": "123-456-7890"
+    },
+    {
+      "email": "Simmy@gmail.com",
+      "password": "Simmy@1999",
+      "confirmPassword": "Simmy@1999",
+      "firstName": "Simmy",
+      "middleName": "",
+      "lastName": "Sebastian",
+      "phoneNumber": "123-456-7890"
+    },
+    {
+      "email": "test@gmail.com",
+      "password": "Test@12345",
+      "confirmPassword": "Test@12345",
+      "firstName": "Simmy",
+      "middleName": "",
+      "lastName": "Sebastian",
+      "phoneNumber": "906-108-3353"
+    }
+  ]
+}
