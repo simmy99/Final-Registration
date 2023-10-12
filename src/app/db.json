@@ -25,6 +25,141 @@
       "middleName": "",
       "lastName": "Sebastian",
       "phoneNumber": "906-108-3353"
+    },
+    {
+      "email": "test1@gmail.com",
+      "password": "Test@11111",
+      "confirmPassword": "Test@11111",
+      "firstName": "Test",
+      "middleName": "",
+      "lastName": "Test",
+      "phoneNumber": "999-999-9999"
+    },
+    {
+      "email": "test2@gmail.com",
+      "password": "Test@22222",
+      "confirmPassword": "Test@22222",
+      "firstName": "Test2",
+      "middleName": "",
+      "lastName": "Test2",
+      "phoneNumber": "222-222-2222"
+    },
+    {
+      "email": "test3@gmail.com",
+      "password": "Test@33333",
+      "confirmPassword": "Test@33333",
+      "firstName": "Test3",
+      "middleName": "",
+      "lastName": "Test3",
+      "phoneNumber": "333-333-3333"
+    },
+    {
+      "email": "test4@gmail.com",
+      "password": "Test@44444",
+      "confirmPassword": "Test@44444",
+      "firstName": "Test4",
+      "middleName": "",
+      "lastName": "Test4",
+      "phoneNumber": "444-444-4444"
+    },
+    {
+      "email": "test5@gmail.com",
+      "password": "Test@55555",
+      "confirmPassword": "Test@55555",
+      "firstName": "Test5",
+      "middleName": "",
+      "lastName": "Test5",
+      "phoneNumber": "555-555-5555"
+    },
+    {
+      "email": "test6@gmail.com",
+      "password": "Test@55555",
+      "confirmPassword": "Test@55555",
+      "firstName": "Test5",
+      "middleName": "",
+      "lastName": "Test5",
+      "phoneNumber": "555-555-5555"
+    },
+    {
+      "email": "test44@gmail.com",
+      "password": "Test@4444",
+      "confirmPassword": "Test@4444",
+      "firstName": "Test4",
+      "middleName": "",
+      "lastName": "Test4",
+      "phoneNumber": "444-444-4444"
+    },
+    {
+      "email": "test0@gmail.com",
+      "password": "Test@90909",
+      "confirmPassword": "Test@90909",
+      "firstName": "Test0",
+      "middleName": "",
+      "lastName": "Test0",
+      "phoneNumber": "090-909-0909"
+    },
+    {
+      "email": "test14@gmail.com",
+      "password": "Test@44444",
+      "confirmPassword": "Test@44444",
+      "firstName": "Test4",
+      "middleName": "",
+      "lastName": "Test4",
+      "phoneNumber": "444-444-4444"
+    },
+    {
+      "email": "test114@gmail.com",
+      "password": "Test@44444",
+      "confirmPassword": "Test@44444",
+      "firstName": "Test4",
+      "middleName": "",
+      "lastName": "Test4",
+      "phoneNumber": "141-144-1441"
+    },
+    {
+      "email": "demo@gmail.com",
+      "password": "Demo@12345",
+      "confirmPassword": "Demo@12345",
+      "firstName": "Demo",
+      "middleName": "",
+      "lastName": "Test",
+      "phoneNumber": "987-654-3210"
+    },
+    {
+      "email": "sample@gmail.com",
+      "password": "Sample@1234",
+      "confirmPassword": "Sample@1234",
+      "firstName": "Sample",
+      "middleName": "",
+      "lastName": "Test",
+      "phoneNumber": "123-123-1234"
+    },
+    {
+      "email": "Simmy110@gmail.com",
+      "password": "Simmy@12345",
+      "confirmPassword": "dfghjk",
+      "firstName": "Simmy",
+      "middleName": "",
+      "lastName": "Sebastian",
+      "phoneNumber": "999-776-7897"
+    },
+    {
+      "email": "hello@gmail.com",
+      "password": "Shinto@1244",
+      "confirmPassword": "Shinto@123455",
+      "firstName": "hello",
+      "middleName": "",
+      "lastName": "test",
+      "phoneNumber": "123-123-1233"
+    },
+    {
+      "email": "",
+      "password": "",
+      "confirmPassword": "",
+      "firstName": "",
+      "middleName": "",
+      "lastName": "",
+      "phoneNumber": ""
     }
   ]
 }

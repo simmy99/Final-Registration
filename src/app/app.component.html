@@ -35,7 +35,7 @@
       <!-- Button trigger modal -->
       <div class="d-flex">
         <button type="button" class="btn btn-info px-4" data-bs-toggle="modal" data-bs-target="#loginModal">
-          Registration Now
+          Register Now
         </button>
       </div>
     </div>
@@ -47,15 +47,15 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header card-header fw-bold">
-        <h5 class="modal-title" id="loginModalLabel">Registration Form</h5>
+        <h5 class="modal-title fw-bold" id="loginModalLabel">Registration Form</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form (ngSubmit)="registerUser()" #registrationForm="ngForm" class="row g-3">
 
           <!--Email-->
-          <div class="col-md-12">
-            <label for="email">Email<span class="mandatory">*</span></label>
+          <div class="col-md-12 fw-bold">
+            <label for="email ">Email<span class="mandatory">*</span></label>
             <input type="email" id="email" name="email" class="form-control" [(ngModel)]="user['email']" required
               pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
             <div class="error-message"
@@ -65,7 +65,7 @@
           </div>
 
           <!--Phone Number-->
-          <div class="col-md-12">
+          <div class="col-md-12 fw-bold">
             <label for="phoneNumber">Phone Number<span class="mandatory">*</span></label>
             <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" [(ngModel)]="user['phoneNumber']"
               pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
@@ -76,7 +76,7 @@
           </div>
 
           <!--First Name-->
-          <div class="col-md-6">
+          <div class="col-md-6 fw-bold">
             <label for="firstName">First Name<span class="mandatory">*</span></label>
             <input type="text" id="firstName" name="firstName" class="form-control" [(ngModel)]="user['firstName']"
               required>
@@ -87,7 +87,7 @@
           </div>
 
           <!--Last Name-->
-          <div class="col-md-6">
+          <div class="col-md-6 fw-bold">
             <label for="lastName">Last Name<span class="mandatory">*</span></label>
             <input type="text" id="lastName" name="lastName" class="form-control" [(ngModel)]="user['lastName']"
               required>
@@ -98,7 +98,7 @@
           </div>
 
           <!--Password-->
-          <div class="col-md-6">
+          <div class="col-md-6 fw-bold">
             <label for="password">Password<span class="mandatory">*</span></label>
             <input type="password" id="password" name="password" class="form-control" [(ngModel)]="user['password']"
               required minlength="10" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$">
@@ -110,7 +110,7 @@
           </div>
 
           <!--Confirm Password-->
-          <div class="col-md-6">
+          <div class="col-md-6 fw-bold">
             <label for="confirmPassword">Confirm Password<span class="mandatory">*</span></label>
             <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
               [(ngModel)]="user['confirmPassword']" required>
@@ -121,7 +121,7 @@
           </div>
 
           <!--Submit-->
-          <div class="col-md-6 mt-4">
+          <div class="col-md-6 mt-4 fw-bold">
             <button type="submit" class="btn btn-primary">Register</button>
             <div class="success-message mt-2" *ngIf="isRegistered">
               <ng-container *ngIf="registrationForm.valid">
@@ -131,6 +131,10 @@
                 Registration failed. Please check your inputs.
               </ng-container>
             </div>
+
+            <div class="error-message mt-2 fw-bold" *ngIf="errorMessage">
+              {{ errorMessage }}
+            </div>        
 
             <div class="error-message mt-2" *ngIf="isRegistered === false && !registrationForm.valid">
               Please enter all required input fields.

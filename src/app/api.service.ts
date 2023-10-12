@@ -19,24 +19,20 @@ export class ApiService {
     return of(authResponse);
   }
 
-  checkDuplicateUser(email: string, phoneNumber: string, token: string): Observable<any> {
-    // Mock the duplicate check response
-    const duplicateResponse = {
-      success: true,
+  checkDuplicateUser(email: string): Observable<any> {
+    // Define your check duplicate user endpoint
+    const checkDuplicateEndpoint = `${this.baseUrl}/check-duplicate`;
+    const body = {
+      email: email
     };
-    return of(duplicateResponse);
+    return this.http.post(checkDuplicateEndpoint, body);
   }
 
-  registerUser(user: any, token: string): Observable<any> {
+  registerUser(user: any): Observable<any> {
     // Define your registration endpoint
     const registerEndpoint = `${this.baseUrl}/register`;
     
-    // Create headers with the authorization token
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-
     // Send a POST request to the server
-    return this.http.post(registerEndpoint, user, { headers });
+    return this.http.post(registerEndpoint, user);
   }
 }

@@ -23,6 +23,8 @@ export class AppComponent {
   };
   isRegistered: boolean = false;
   registrationSuccessful: boolean = false;
+  emailExistsMessage: string = '';
+  errorMessage: string = '';
 
   @ViewChild('registrationForm', { static: false }) form!: NgForm;
 
@@ -36,17 +38,24 @@ export class AppComponent {
   }
 
   registerUser() {
-    this.isRegistered = false;
-
-    if (this.form.valid) {
-      if (this.passwordsMatchValidator()) {
-        this.authenticateUser();
-      } else {
-        this.form.controls['confirmPassword'].setErrors({ 'passwordMismatch': true });
+    this.emailExistsMessage = '';
+    // Call the checkDuplicateUser method without the token
+    this.apiService.checkDuplicateUser(this.user.email).subscribe(
+      (duplicateResponse) => {
+        if (duplicateResponse.success) {
+          // Email doesn't exist, proceed with registration
+          this.registerUserOnSuccess();
+        } else {
+          // Email already exists, show an error message
+          this.emailExistsMessage = duplicateResponse.message || 'Email already exists';
+          this.isRegistered = false;
+        }
+      },
+      (error) => {
+        // Handle the error response here
+        console.error('Duplicate check API error:', error);
       }
-    } else {
-      console.error('Form validation error: Please check your inputs.');
-    }
+    );
   }
 
   authenticateUser() {
@@ -66,10 +75,10 @@ export class AppComponent {
   }
 
   checkDuplicateUser(token: string) {
-    this.apiService.checkDuplicateUser(this.user.email, this.user.phoneNumber, token).subscribe(
+    this.apiService.checkDuplicateUser(this.user.email).subscribe(
       (duplicateResponse) => {
         if (duplicateResponse.success) {
-          this.registerUserOnSuccess(token);
+          this.registerUserOnSuccess();
         } else {
           console.error('Duplicate check failed:', duplicateResponse.message);
         }
@@ -80,24 +89,26 @@ export class AppComponent {
     );
   }
 
-  registerUserOnSuccess(token: string) {
-    this.apiService.registerUser(this.user, token).subscribe(
+  registerUserOnSuccess() {
+    // Call the registerUser method without the token
+    this.apiService.registerUser(this.user).subscribe(
       (registerResponse) => {
         if (registerResponse.success) {
           this.isRegistered = true;
-          this.registrationSuccessful = true;
-
-          // Close the modal after 3 seconds (3000 milliseconds)
-          setTimeout(() => {
-            this.modalRef.hide();
-          }, 3000);
+          // Clear any previous error messages
+          this.errorMessage = '';
         } else {
-          console.error('Registration failed:', registerResponse.message);
+          // Registration failed, set the error message
+          this.errorMessage = 'Registration failed: ' + registerResponse.message;
+          console.error(this.errorMessage);
         }
       },
       (error) => {
-        console.error('Registration API error:', error);
+        // Handle the error response here
+        this.errorMessage = 'Registration API error: ' + error.message;
+        console.error(this.errorMessage);
       }
     );
   }
+  
 }
